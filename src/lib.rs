@@ -114,7 +114,7 @@ impl NTPTimestamp {
     #[must_use]
     pub fn to_unix_timestamp(&self) -> u64 {
         let seconds = u64::from(self.seconds()) - NTP_EPOCH_DELTA.as_secs();
-        let fraction = u64::from(self.fraction) / u32::MAX as u64;
+        let fraction = self.fraction_as_us();
 
         seconds + fraction
     }
